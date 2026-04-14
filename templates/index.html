@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Failure Prediction</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <button id="logout-btn" onclick="logout()">Logout</button>
+    <div class="form-header">
+      <h1><i class="fas fa-heartbeat"></i> Heart Failure Prediction</h1>
+      <p>Fill in the form below to check the likelihood of heart failure.</p>
+    </div>
+    <form id="predictionForm" class="form-grid">
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+      </div>
+      <div class="form-group">
+        <label for="restingBP">Resting Blood Pressure:</label>
+        <input type="number" id="restingBP" name="restingBP" required>
+      </div>
+      <div class="form-group">
+        <label for="cholesterol">Cholesterol:</label>
+        <input type="number" id="cholesterol" name="cholesterol" required>
+      </div>
+      <div class="form-group">
+        <label for="fastingBS">Fasting Blood Sugar (0 or 1):</label>
+        <input type="number" id="fastingBS" name="fastingBS" min="0" max="1" required>
+      </div>
+      <div class="form-group">
+        <label for="maxHR">Maximum Heart Rate:</label>
+        <input type="number" id="maxHR" name="maxHR" required>
+      </div>
+      <div class="form-group">
+        <label>Exercise-Induced Angina:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="exerciseAngina" value="0" required> No</label>
+          <label><input type="radio" name="exerciseAngina" value="1" required> Yes</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="oldpeak">Oldpeak:</label>
+        <input type="number" id="oldpeak" name="oldpeak" step="0.1" required>
+      </div>
+      <div class="form-group">
+        <label>Gender:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="0" required> Female</label>
+          <label><input type="radio" name="gender" value="1" required> Male</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Chest Pain Type:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="cp" value="0" required> Typical Angina (TA)</label>
+          <label><input type="radio" name="cp" value="1" required> Atypical Angina (ATA)</label>
+          <label><input type="radio" name="cp" value="2" required> Non-Anginal Pain (NAP)</label>
+          <label><input type="radio" name="cp" value="3" required> Asymptomatic (ASY)</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>ECG Results:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="ecg" value="0" required> Normal</label>
+          <label><input type="radio" name="ecg" value="1" required> ST-T Wave Abnormality</label>
+          <label><input type="radio" name="ecg" value="2" required> Left Ventricular Hypertrophy</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>ST Slope:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="st" value="0" required> Upsloping</label>
+          <label><input type="radio" name="st" value="1" required> Flat</label>
+          <label><input type="radio" name="st" value="2" required> Downsloping</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="button" id="predictBtn" class="btn-primary">Predict</button>
+        <p id="errorMessage" class="error-message"></p>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal for Results -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <p id="resultMessage">Your prediction will appear here.</p>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

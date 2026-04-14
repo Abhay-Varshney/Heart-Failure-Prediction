@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+        <div class="page-header">
+        <h1>Heart Failure Prediction</h1>
+    </div>
+    <div class="wrapper">        
+        <div class="title">Register Form</div>
+        <form onsubmit="register(event)">
+            <div class="field">
+                <input type="text" id="username" required>
+                <label>Username</label>
+            </div>
+            <div class="field">
+                <input type="password" id="password" required>
+                <label>Password</label>
+            </div>
+            <div class="field">
+                <input type="email" id="email" required>
+                <label>Email</label>
+            </div>
+            <div class="field">
+                <input type="contact" id="contact" required>
+                <label>Contact</label>
+            </div>
+            <div class="field">
+                <input type="submit" value="Register">
+            </div>
+            <p id="message"></p>
+            <div class="signup-link">
+                Already have an account? <a href="/login">Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function register(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+
+            if (username && password) {
+                localStorage.setItem(username, password);
+                message.textContent = 'Registration successful! Redirecting...';
+                message.style.color = 'blue';
+                message.style.padding = '10px' ;
+
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 2000);
+            } else {
+                message.textContent = 'Please fill in all fields.';
+                message.style.color = 'red';
+                message.style.padding = '10px' ;
+
+            }
+        }
+    </script>
+</body>
+</html>
